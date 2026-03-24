@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Mundo de la Energía: Conceptos y Usos</title>
+    
+    <!-- Biblioteca para generar el Código QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        /* --- ESTILOS CSS --- */
+        :root {
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --header-color: #3182ce;
+            --subtle-text: #718096;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(0, 0, 0, 0.06);
+            --hover-shadow: rgba(0, 0, 0, 0.1);
+            --input-bg: #edf2f7;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --text-color: #e2e8f0;
+            --header-color: #63b3ed;
+            --subtle-text: #a0aec0;
+            --border-color: #4a5568;
+            --shadow-color: rgba(0, 0, 0, 0.3);
+            --hover-shadow: rgba(0, 0, 0, 0.5);
+            --input-bg: #4a5568;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            color: var(--header-color);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--subtle-text);
+        }
+
+        /* --- Sección del Generador de QR --- */
+        .qr-generator {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .qr-generator h2 {
+            font-size: 1.5rem;
+            color: var(--header-color);
+            margin-bottom: 15px;
+        }
+
+        .qr-input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        #qr-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #qr-input:focus {
+            outline: none;
+            border-color: var(--header-color);
+            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.25);
+        }
+
+        #generate-qr-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--header-color);
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #generate-qr-btn:hover {
+            background-color: #2c5282;
+            transform: translateY(-2px);
+        }
+
+        #qrcode {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            min-height: 162px;
+            align-items: center;
+        }
+        
+        #qrcode:empty::before {
+            content: "Tu código QR aparecerá aquí";
+            color: #aaa;
+        }
+
+        /* --- Botón de Tema --- */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--header-color);
+            color: var(--card-bg);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transform: scale(1.1);
+        }
+
+        /* --- Sección Principal con Buscador y Lista --- */
+        main {
+            padding: 40px 0;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            position: relative;
+        }
+
+        #search-input {
+            width: 100%;
+            padding: 15px 20px 15px 50px;
+            font-size: 1.1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: box-shadow 0.3s;
+        }
+
+        #search-input:focus {
+            outline: none;
+            box-shadow: 0 4px 16px var(--hover-shadow);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            color: var(--subtle-text);
+        }
+
+        .energy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .energy-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 8px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .energy-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px var(--hover-shadow);
+        }
+
+        .energy-card h3 {
+            font-size: 1.6rem;
+            color: var(--header-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .energy-card p {
+            color: var(--subtle-text);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .energy-card p strong {
+            color: var(--text-color);
+            font-weight: 600;
+        }
+        
+        .energy-card ul {
+            list-style-type: '✔️';
+            padding-left: 25px;
+            color: var(--subtle-text);
+        }
+
+        .energy-card ul li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--subtle-text);
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .theme-toggle {
+                position: relative;
+                top: 10px;
+                right: 0;
+                margin-bottom: 20px;
+            }
+            .qr-input-group {
+                flex-direction: column;
+            }
+            .energy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                <span class="icon">🌙</span>
+            </button>
+            
+            <h1>El Mundo de la Energía</h1>
+            <p>Explora los conceptos, usos y ejemplos de las diferentes formas de energía.</p>
+            
+            <div class="qr-generator">
+                <h2>Generador de Código QR</h2>
+                <div class="qr-input-group">
+                    <input type="url" id="qr-input" placeholder="Pega un enlace para generar un QR...">
+                    <button id="generate-qr-btn">Generar</button>
+                </div>
+                <div id="qrcode"></div>
+            </div>
+        </header>
+
+        <main>
+            <section class="search-container">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="search-input" placeholder="Buscar un tipo de energía (ej. solar, cinética...)">
+            </section>
+
+            <section class="energy-grid" id="energy-list">
+                <article class="energy-card">
+                    <h3>Energía Cinética</h3>
+                    <p><strong>Concepto:</strong> Es la energía que posee un objeto debido a su movimiento. Depende de la masa y la velocidad del objeto.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Generar electricidad en centrales hidroeléctricas y eólicas.</li>
+                        <li>Propulsar vehículos y maquinaria.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> Una pelota que es lanzada, un tren en movimiento, el viento, el agua fluyendo por un río.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Potencial</h3>
+                    <p><strong>Concepto:</strong> Es la energía almacenada que un objeto posee debido a su posición o estado. La más común es la potencial gravitatoria.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Almacenar agua en embalses para luego generar electricidad.</li>
+                        <li>Funcionamiento de relojes de pesa y juguetes de resorte.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> Agua en la cima de una presa, un libro en una estantería, un arco estirado, un resorte comprimido.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Térmica</h3>
+                    <p><strong>Concepto:</strong> Es la energía del movimiento aleatorio de las partículas (átomos y moléculas) que componen un cuerpo. La percibimos como calor.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Calefacción de hogares y edificios.</li>
+                        <li>Cocción de alimentos.</li>
+                        <li>Generación de electricidad en centrales térmicas y nucleares.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> El calor del sol, un hierro para planchar, el vapor de una tetera, la energía geotérmica.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Química</h3>
+                    <p><strong>Concepto:</strong> Es la energía almacenada en los enlaces químicos de los átomos y moléculas. Se libera o se absorbe durante las reacciones químicas.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Combustión de gasolina y gas natural para mover vehículos y generar calor.</li>
+                        <li>Funcionamiento de las baterías y pilas.</li>
+                        <li>Procesos metabólicos en los seres vivos.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> La gasolina, la madera, los alimentos, las baterías de un móvil.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Eléctrica</h3>
+                    <p><strong>Concepto:</strong> Es la energía asociada al flujo de electrones a través de un conductor. Es una de las formas más útiles y versátiles de energía.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Iluminación de hogares y ciudades.</li>
+                        <li>Funcionamiento de几乎 todos los aparatos electrónicos.</li>
+                        <li>Alimentación de motores industriales y transporte público.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> Un rayo durante una tormenta, la corriente de un enchufe, la energía de una pila.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Nuclear</h3>
+                    <p><strong>Concepto:</strong> Es la energía almacenada en el núcleo de los átomos. Se libera en procesos de fisión (división) o fusión (unión) nuclear.</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Generación de electricidad en centrales nucleares.</li>
+                        <li>Propulsión de barcos y submarinos.</li>
+                        <li>Aplicaciones médicas en diagnósticos y tratamientos.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> El Sol (energía de fusión), las centrales nucleares (energía de fisión), bombas atómicas.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Solar</h3>
+                    <p><strong>Concepto:</strong> Es la energía obtenida de la radiación del Sol. Puede ser térmica (calor) o fotovoltaica (luz convertida en electricidad).</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Generación de electricidad con paneles fotovoltaicos.</li>
+                        <li>Calentamiento de agua para uso sanitario.</li>
+                        <li>Cocción de alimentos con hornos solares.</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> Paneles solares en tejados, calentadores solares de agua, la fotosíntesis de las plantas.</p>
+                </article>
+
+                <article class="energy-card">
+                    <h3>Energía Eólica</h3>
+                    <p><strong>Concepto:</strong> Es la energía obtenida del viento, que es básicamente aire en movimiento (energía cinética del aire).</p>
+                    <p><strong>Usos:</strong></p>
+                    <ul>
+                        <li>Generación de electricidad en parques eólicos.</li>
+                        <li>Bombeo de agua y molienda de grano (usos tradicionales).</li>
+                    </ul>
+                    <p><strong>Ejemplos:</strong> Los molinos de viento, los aerogeneradores modernos, la navegación a vela.</p>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2024 | Una exploración de las formas de energía que mueven nuestro mundo.</p>
+        </footer>
+    </div>
+
+    <script>
+        // --- JAVASCRIPT ---
+
+        // 1. LÓGICA DEL MODO OSCURO
+        const themeToggle = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                themeToggle.innerHTML = '<span class="icon">☀️</span>';
+            }
+        }
+
+        themeToggle.addEventListener('click', function() {
+            const theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggle.innerHTML = '<span class="icon">🌙</span>';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '<span class="icon">☀️</span>';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // 2. LÓGICA DEL GENERADOR DE CÓDIGO QR
+        const qrInput = document.getElementById('qr-input');
+        const generateBtn = document.getElementById('generate-qr-btn');
+        const qrcodeDiv = document.getElementById('qrcode');
+
+        function generateQRCode() {
+            const url = qrInput.value;
+            if (!url) {
+                alert('Por favor, introduce un enlace.');
+                return;
+            }
+            qrcodeDiv.innerHTML = ''; // Limpiar QR anterior
+            new QRCode(qrcodeDiv, {
+                text: url,
+                width: 128,
+                height: 128,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        }
+
+        generateBtn.addEventListener('click', generateQRCode);
+        qrInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                generateQRCode();
+            }
+        });
+
+        // 3. LÓGICA DEL BUSCADOR
+        const searchInput = document.getElementById('search-input');
+        const energyCards = document.querySelectorAll('#energy-list .energy-card');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+
+            energyCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                if (cardText.includes(searchTerm)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
