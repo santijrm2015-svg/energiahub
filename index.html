@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explora 21 Tipos de Energía</title>
+    <title>EnergiaHub</title>
     
-  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
-       
         :root {
             --bg-color: #f0f4f8;
             --card-bg: #ffffff;
@@ -72,7 +70,6 @@
             color: var(--subtle-text);
         }
 
-       
         .qr-generator {
             margin-top: 30px;
             padding: 25px;
@@ -146,7 +143,6 @@
             color: #aaa;
         }
 
-        /* --- Botón de Tema --- */
         .theme-toggle {
             position: absolute;
             top: 20px;
@@ -172,7 +168,6 @@
             transform: scale(1.1);
         }
 
-        /* --- Sección Principal con Buscador y Lista --- */
         main {
             padding: 40px 0;
         }
@@ -317,7 +312,6 @@
             </section>
 
             <section class="energy-grid" id="energy-list">
-                <!-- 1. Energía Cinética -->
                 <article class="energy-card">
                     <h3>Energía Cinética</h3>
                     <p><strong>Concepto:</strong> La energía que posee un objeto debido a su movimiento.</p>
@@ -325,7 +319,6 @@
                     <p><strong>Ejemplos:</strong> Una pelota lanzada, un tren en movimiento, el viento.</p>
                 </article>
 
-                <!-- 2. Energía Potencial -->
                 <article class="energy-card">
                     <h3>Energía Potencial</h3>
                     <p><strong>Concepto:</strong> Energía almacenada debido a la posición o estado de un objeto.</p>
@@ -333,7 +326,6 @@
                     <p><strong>Ejemplos:</strong> Agua en la cima de una presa, un libro en una estantería, un arco estirado.</p>
                 </article>
 
-                <!-- 3. Energía Térmica -->
                 <article class="energy-card">
                     <h3>Energía Térmica</h3>
                     <p><strong>Concepto:</strong> Energía del movimiento de partículas que percibimos como calor.</p>
@@ -341,7 +333,6 @@
                     <p><strong>Ejemplos:</strong> El calor del sol, un hierro para planchar, el vapor de una tetera.</p>
                 </article>
 
-                <!-- 4. Energía Química -->
                 <article class="energy-card">
                     <h3>Energía Química</h3>
                     <p><strong>Concepto:</strong> Energía almacenada en los enlaces de los átomos y moléculas.</p>
@@ -349,7 +340,6 @@
                     <p><strong>Ejemplos:</strong> La gasolina, la madera, los alimentos, las pilas.</p>
                 </article>
 
-                <!-- 5. Energía Eléctrica -->
                 <article class="energy-card">
                     <h3>Energía Eléctrica</h3>
                     <p><strong>Concepto:</strong> Energía asociada al flujo de electrones a través de un conductor.</p>
@@ -357,7 +347,6 @@
                     <p><strong>Ejemplos:</strong> Un rayo, la corriente de un enchufe, la energía de una pila.</p>
                 </article>
 
-                <!-- 6. Energía Nuclear -->
                 <article class="energy-card">
                     <h3>Energía Nuclear</h3>
                     <p><strong>Concepto:</strong> Energía almacenada en el núcleo de los átomos, liberada por fisión o fusión.</p>
@@ -365,7 +354,6 @@
                     <p><strong>Ejemplos:</strong> El Sol (fusión), centrales nucleares (fisión).</p>
                 </article>
 
-                <!-- 7. Energía Radiante -->
                 <article class="energy-card">
                     <h3>Energía Radiante</h3>
                     <p><strong>Concepto:</strong> Energía que viaja en forma de ondas electromagnéticas (incluye la luz).</p>
@@ -373,7 +361,6 @@
                     <p><strong>Ejemplos:</strong> La luz solar, las ondas de radio, los rayos X, el calor de una fogata.</p>
                 </article>
 
-                <!-- 8. Energía Solar -->
                 <article class="energy-card">
                     <h3>Energía Solar</h3>
                     <p><strong>Concepto:</strong> Energía obtenida de la radiación del Sol.</p>
@@ -381,7 +368,6 @@
                     <p><strong>Ejemplos:</strong> Paneles solares en tejados, calentadores solares, hornos solares.</p>
                 </article>
 
-                <!-- 9. Energía Eólica -->
                 <article class="energy-card">
                     <h3>Energía Eólica</h3>
                     <p><strong>Concepto:</strong> Energía obtenida del viento (energía cinética del aire).</p>
@@ -389,7 +375,6 @@
                     <p><strong>Ejemplos:</strong> Molinos de viento, aerogeneradores modernos, navegación a vela.</p>
                 </article>
 
-                <!-- 10. Energía Hidráulica -->
                 <article class="energy-card">
                     <h3>Energía Hidráulica</h3>
                     <p><strong>Concepto:</strong> Energía obtenida de la fuerza del agua en movimiento (ríos, cascadas).</p>
@@ -397,7 +382,6 @@
                     <p><strong>Ejemplos:</strong> La presa de las Tres Gargantas (China), los molinos de agua antiguos.</p>
                 </article>
 
-                <!-- 11. Energía Geotérmica -->
                 <article class="energy-card">
                     <h3>Energía Geotérmica</h3>
                     <p><strong>Concepto:</strong> Energía térmica almacenada en el interior de la Tierra.</p>
@@ -405,7 +389,6 @@
                     <p><strong>Ejemplos:</strong> Centrales geotérmicas en Islandia, aguas termales, géiseres.</p>
                 </article>
 
-                <!-- 12. Biomasa -->
                 <article class="energy-card">
                     <h3>Biomasa</h3>
                     <p><strong>Concepto:</strong> Energía química almacenada en materia orgánica (plantas, residuos).</p>
@@ -413,7 +396,6 @@
                     <p><strong>Ejemplos:</strong> Leña, residuos agrícolas, bagazo de caña, pellets de madera.</p>
                 </article>
 
-                <!-- 13. Energía de las Olas -->
                 <article class="energy-card">
                     <h3>Energía de las Olas</h3>
                     <p><strong>Concepto:</strong> Energía cinética y potencial del movimiento de las olas del mar.</p>
@@ -421,7 +403,6 @@
                     <p><strong>Ejemplos:</strong> Boyas generadoras de energía, columnas de agua oscilantes.</p>
                 </article>
 
-                <!-- 14. Energía Mareomotriz -->
                 <article class="energy-card">
                     <h3>Energía Mareomotriz</h3>
                     <p><strong>Concepto:</strong> Energía obtenida del movimiento de las masas de agua ocasionado por las mareas, provocadas por la atracción gravitacional de la Luna y el Sol.</p>
@@ -429,7 +410,6 @@
                     <p><strong>Ejemplos:</strong> La central mareomotriz de La Rance (Francia), proyectos en la bahía de Fundy (Canadá).</p>
                 </article>
 
-                <!-- 15. Energía del Hidrógeno -->
                 <article class="energy-card">
                     <h3>Energía del Hidrógeno</h3>
                     <p><strong>Concepto:</strong> Energía liberada al combinar hidrógeno con oxígeno, generalmente en una pila de combustible.</p>
@@ -437,7 +417,6 @@
                     <p><strong>Ejemplos:</strong> Coches como el Toyota Mirai, cohetes espaciales.</p>
                 </article>
 
-                <!-- 16. Energía Mecánica -->
                 <article class="energy-card">
                     <h3>Energía Mecánica</h3>
                     <p><strong>Concepto:</strong> La suma de la energía cinética y la energía potencial de un sistema.</p>
@@ -445,7 +424,6 @@
                     <p><strong>Ejemplos:</strong> Una montaña rusa (alternancia entre cinética y potencial), un péndulo.</p>
                 </article>
 
-                <!-- 17. Energía Sonora -->
                 <article class="energy-card">
                     <h3>Energía Sonora</h3>
                     <p><strong>Concepto:</strong> Una forma de energía mecánica que viaja en ondas a través de un medio (aire, agua).</p>
@@ -453,7 +431,6 @@
                     <p><strong>Ejemplos:</strong> La voz humana, la música de un altavoz, el eco en una cueva.</p>
                 </article>
 
-                <!-- 18. Energía Magnética -->
                 <article class="energy-card">
                     <h3>Energía Magnética</h3>
                     <p><strong>Concepto:</strong> Energía almacenada en un campo magnético, asociada al movimiento de cargas eléctricas.</p>
@@ -461,7 +438,6 @@
                     <p><strong>Ejemplos:</strong> Imanes de un refrigerador, trenes de levitación magnética (Maglev), discos duros.</p>
                 </article>
 
-                <!-- 19. Energía Piezoeléctrica -->
                 <article class="energy-card">
                     <h3>Energía Piezoeléctrica</h3>
                     <p><strong>Concepto:</strong> Energía eléctrica generada al aplicar presión mecánica sobre ciertos materiales (cuarzo, cerámicas).</p>
@@ -469,7 +445,6 @@
                     <p><strong>Ejemplos:</strong> El encendedor de una cocina de gas, las zapatillas que cargan dispositivos al caminar.</p>
                 </article>
 
-                <!-- 20. Energía Azul (Osmosis Salina) -->
                 <article class="energy-card">
                     <h3>Energía Azul</h3>
                     <p><strong>Concepto:</strong> Energía liberada cuando el agua dulce se mezcla con el agua salada (gradiente de salinidad).</p>
@@ -477,7 +452,6 @@
                     <p><strong>Ejemplos:</strong> Plantas piloto en Noruega y Países Bajos que usan membranas de ósmosis.</p>
                 </article>
                 
-                <!-- 21. Energía Luminosa -->
                 <article class="energy-card">
                     <h3>Energía Luminosa</h3>
                     <p><strong>Concepto:</strong> Es la energía de la radiación electromagnética que es visible para el ojo humano. Es una fracción de la energía radiante.</p>
@@ -494,9 +468,6 @@
     </div>
 
     <script>
-        // --- JAVASCRIPT ---
-
-        // 1. LÓGICA DEL MODO OSCURO
         const themeToggle = document.getElementById('theme-toggle');
         const currentTheme = localStorage.getItem('theme');
 
@@ -520,7 +491,6 @@
             }
         });
 
-        // 2. LÓGICA DEL GENERADOR DE CÓDIGO QR
         const qrInput = document.getElementById('qr-input');
         const generateBtn = document.getElementById('generate-qr-btn');
         const qrcodeDiv = document.getElementById('qrcode');
@@ -528,11 +498,10 @@
         function generateQRCode() {
             const url = qrInput.value;
             if (!url) {
-                // Evita el alert y muestra un mensaje más amigable si es posible
                 qrcodeDiv.innerHTML = '<p style="color:red;">Por favor, introduce un enlace.</p>';
                 return;
             }
-            qrcodeDiv.innerHTML = ''; // Limpiar QR anterior
+            qrcodeDiv.innerHTML = '';
             new QRCode(qrcodeDiv, {
                 text: url,
                 width: 128,
@@ -550,7 +519,6 @@
             }
         });
 
-        // 3. LÓGICA DEL BUSCADOR
         const searchInput = document.getElementById('search-input');
         const energyCards = document.querySelectorAll('#energy-list .energy-card');
 
